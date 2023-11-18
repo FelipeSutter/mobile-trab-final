@@ -2,32 +2,33 @@ import { View, Text, Image, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import api from "../../../service/api";
 
-const Detalhes = () => {
-  const [musica, setMusica] = useState([]);
+const Detalhes = ({ route }) => {
+  const [musica, setMusica] = useState({});
+  const { id } = route.params;
 
-  const getMusicas = async () => {
-    const { data } = await api.get(`/1`);
-    // console.log(data);
-    setMusica(data);
+  const getMusica = async () => {
+    try {
+      const { data } = await api.get(`/${id}`);
+      setMusica(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
-    getMusicas();
-  }, []);
+    getMusica();
+  }, [id]);
 
   return (
-    <>
-      <ScrollView>
-        <Image
-          src={musica.url}
-          style={{ width: 200, height: 200, marginTop: 50 }}
-        />
-        <Text style={{ marginTop: 50 }}>{musica.artist}</Text>
-
-        <Text style={{ marginTop: 50 }}>{musica.title}</Text>
-        <Text style={{ marginTop: 50 }}>{musica.description}</Text>
-      </ScrollView>
-    </>
+    <ScrollView>
+      <Image
+        source={{ uri: musica.url }}
+        style={{ width: 100, height: 100, marginTop: 50 }}
+      />
+      <Text style={{ marginTop: 50 }}>{musica.artist}</Text>
+      <Text style={{ marginTop: 50 }}>{musica.title}</Text>
+      <Text style={{ marginTop: 50 }}>{musica.description}</Text>
+    </ScrollView>
   );
 };
 
