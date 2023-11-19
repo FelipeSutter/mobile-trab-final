@@ -1,23 +1,45 @@
 import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import api from "../../../service/api";
+import loadImg from "../../../assets/clef-1.1s-200px.png";
 
 const Detalhes = ({ route }) => {
   const [musica, setMusica] = useState({});
+  const [loading, setLoading] = useState(false);
   const { id } = route.params;
 
   const getMusica = async () => {
+    setLoading(true);
     try {
       const { data } = await api.get(`/${id}`);
       setMusica(data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getMusica();
   }, [id]);
+
+  if (loading) {
+    return (
+      // <Image
+      //   source={loadImg}
+      //   style={{
+      //     width: "100%",
+      //     height: "100%",
+      //     alignItems: "center",
+      //     justifyContent: "center",
+      //   }}
+      // />
+      <View style={styles.container}>
+        <Text style={[styles.textArtist, styles.text]}>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
