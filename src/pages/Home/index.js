@@ -125,8 +125,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   topArtistsSection: {
-    marginTop: 20, 
+    marginTop: 5, 
     alignItems: "center",
+    marginBottom: 15,
   },
   sectionTitle: {
     fontSize: 20,
