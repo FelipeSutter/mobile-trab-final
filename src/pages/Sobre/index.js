@@ -11,7 +11,7 @@ const Sobre = () => {
       imagem: require("../../../assets/sabrina.png"),
     },
     { nome: "Felipe Sutter", imagem: require("../../../assets/sutter.png") },
-    { nome: "Igor Araujo", imagem: require("../../../assets/rian.png") },
+    { nome: "Igor Araujo", imagem: require("../../../assets/igor.png") },
   ];
 
   return (
