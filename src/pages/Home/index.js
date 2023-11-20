@@ -38,9 +38,13 @@ const Home = ({ route }) => {
       </View>
 
       {/* Sessão "Top Artistas" */}
+     
       <View style={styles.topArtistsSection}>
+        
         <Text style={styles.sectionTitle}>Top Artistas</Text>
+        
         <View style={styles.artistImages}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <Image
             source={{ uri: 'data:image/jpeg;base64,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' }}
             style={styles.artistImage}
@@ -53,7 +57,33 @@ const Home = ({ route }) => {
             source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrBXM2CSXBRBe4HC8rEws0h7Vl_FEMTK0tA&usqp=CAU' }}
             style={styles.artistImage}
           />
+          <Image
+            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrBXM2CSXBRBe4HC8rEws0h7Vl_FEMTK0tA&usqp=CAU' }}
+            style={styles.artistImage}
+          />
+          <Image
+            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrBXM2CSXBRBe4HC8rEws0h7Vl_FEMTK0tA&usqp=CAU' }}
+            style={styles.artistImage}
+          />
+          <Image
+            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrBXM2CSXBRBe4HC8rEws0h7Vl_FEMTK0tA&usqp=CAU' }}
+            style={styles.artistImage}
+          />
+          <Image
+            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrBXM2CSXBRBe4HC8rEws0h7Vl_FEMTK0tA&usqp=CAU' }}
+            style={styles.artistImage}
+          />
+          <Image
+            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrBXM2CSXBRBe4HC8rEws0h7Vl_FEMTK0tA&usqp=CAU' }}
+            style={styles.artistImage}
+          />
+          <Image
+            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrBXM2CSXBRBe4HC8rEws0h7Vl_FEMTK0tA&usqp=CAU' }}
+            style={styles.artistImage}
+          />
+          </ScrollView>
         </View>
+        
       </View>
       {/* lista de Categorias */}
       <ListaCategoria musicas={musicas} />
