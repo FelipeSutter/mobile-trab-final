@@ -7,6 +7,7 @@ import Detalhes from "../src/pages/Detalhes";
 import Signin from "../src/pages/Signin";
 import Signup from "../src/pages/Signup";
 import Sobre from "../src/pages/Sobre";
+import NovaMusica from "../src/pages/NovaMusica";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -14,8 +15,21 @@ const Stack = createNativeStackNavigator();
 const TabNavigate = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Sobre" component={Sobre} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="NovaMusica"
+        component={NovaMusica}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Sobre"
+        component={Sobre}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 };
@@ -23,8 +37,13 @@ const TabNavigate = () => {
 const Routes = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={TabNavigate} />
+      <Stack.Screen
+        name="Home"
+        component={TabNavigate}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Sobre" component={TabNavigate} />
+      <Stack.Screen name="NovaMusica" component={TabNavigate} />
       <Stack.Screen name="Detalhes" component={Detalhes} />
     </Stack.Navigator>
   );
@@ -33,13 +52,12 @@ const Routes = () => {
 export const StackNavigate = ({ onLogin }) => {
   return (
     <Stack.Navigator initialRouteName="Signin">
-      <Stack.Screen
-        name="Signin"
-        options={{ headerShown: false }}
-        component={() => <Signin onLogin={onLogin} />}
-      />
+      <Stack.Screen name="Signin" options={{ headerShown: false }}>
+        {(props) => <Signin {...props} onLogin={onLogin} />}
+      </Stack.Screen>
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Home" component={Routes} />
+      <Stack.Screen name="NovaMusica" component={NovaMusica} />
     </Stack.Navigator>
   );
 };

@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signin = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -10,9 +11,21 @@ const Signin = ({ onLogin }) => {
   const [error, setError] = useState("");
   const navigation = useNavigation();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !senha) {
       setError("Preencha todos os campos");
+      return;
+    }
+
+    const verifyEmail = await AsyncStorage.getItem("@Async:emailUser");
+    const verifySenha = await AsyncStorage.getItem("@Async:passUser");
+
+    console.log({ verifyEmail });
+
+    if (verifyEmail != email && verifySenha != senha) {
+      setEmail("");
+      setSenha("");
+      setError("ERRADO"); /* TODO trocar mensagem */
       return;
     }
 
