@@ -26,11 +26,9 @@ export default Routes;
 export const StackNavigate = ({ onLogin }) => {
   return (
     <Stack.Navigator initialRouteName="Signin">
-      <Stack.Screen
-        name="Signin"
-        options={{ headerShown: false }}
-        component={() => <Signin onLogin={onLogin} />}
-      />
+      <Stack.Screen name="Signin" options={{ headerShown: false }}>
+        {(props) => <Signin {...props} onLogin={onLogin} />}
+      </Stack.Screen>
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>

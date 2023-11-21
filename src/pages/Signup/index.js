@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ const Signup = ({ navigation }) => {
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if (!email || !emailConf || !senha) {
       setError("Preencha todos os campos");
       return;
@@ -18,24 +19,18 @@ const Signup = ({ navigation }) => {
       return;
     }
 
-    // Substitua o trecho abaixo pelo seu código de cadastro
-    // const res = signup(email, senha);
+    await AsyncStorage.setItem("@Async:emailUser", email);
+    await AsyncStorage.setItem("@Async:passUser", senha);
 
-    // Exemplo simulado de código de cadastro
-    const res = email === "user@example.com" ? "Usuário já cadastrado" : null;
+    // if (res) {
+    //   setEmail("");
+    //   setEmailConf("");
+    //   setSenha("");
+    //   setError(res);
+    //   return;
+    // }
 
-    if (res) {
-      setEmail("");
-      setEmailConf("");
-      setSenha("");
-      setError(res);
-      return;
-    }
-
-    // Exemplo de alerta para usuário cadastrado com sucesso
     alert("Usuário cadastrado com sucesso!");
-    // Navegue para a tela de login após o cadastro bem-sucedido
-    // Substitua "Signin" pelo nome da tela desejada
     navigation.navigate("Signin");
   };
 
