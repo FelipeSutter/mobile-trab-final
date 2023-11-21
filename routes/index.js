@@ -7,6 +7,7 @@ import Detalhes from "../src/pages/Detalhes";
 import Signin from "../src/pages/Signin";
 import Signup from "../src/pages/Signup";
 import Sobre from "../src/pages/Sobre";
+import NovaMusica from "../src/pages/NovaMusica";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -16,6 +17,7 @@ const Routes = () => {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Detalhes" component={Detalhes} />
+      <Tab.Screen name="NovaMusica" component={NovaMusica} />
       <Tab.Screen name="Sobre" component={Sobre} />
     </Tab.Navigator>
   );
@@ -31,6 +33,7 @@ export const StackNavigate = ({ onLogin }) => {
       </Stack.Screen>
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="NovaMusica" component={NovaMusica} />
     </Stack.Navigator>
   );
 };
