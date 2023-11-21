@@ -1,4 +1,11 @@
-import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import api from "../../../service/api";
 import loadImg from "../../../assets/clef-1.1s-200px.png";
@@ -10,14 +17,16 @@ const Detalhes = ({ route }) => {
 
   const getMusica = async () => {
     setLoading(true);
-    try {
-      const { data } = await api.get(`/${id}`);
-      setMusica(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false);
-    }
+    setTimeout(async () => {
+      try {
+        const { data } = await api.get(`/${id}`);
+        setMusica(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }, 700);
   };
 
   useEffect(() => {
@@ -26,18 +35,12 @@ const Detalhes = ({ route }) => {
 
   if (loading) {
     return (
-      // <Image
-      //   source={loadImg}
-      //   style={{
-      //     width: "100%",
-      //     height: "100%",
-      //     alignItems: "center",
-      //     justifyContent: "center",
-      //   }}
-      // />
       <View style={styles.container}>
-        <Text style={[styles.textArtist, styles.text]}>Loading...</Text>
+        <ActivityIndicator size="large" color="#b0d6ff" />
       </View>
+      // <View style={styles.container}>
+      //   <Text style={[styles.textArtist, styles.text]}>Loading...</Text>
+      // </View>
     );
   }
 
