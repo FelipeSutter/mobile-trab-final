@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -11,17 +11,24 @@ import Sobre from "../src/pages/Sobre";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const Routes = () => {
+const TabNavigate = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Detalhes" component={Detalhes} />
       <Tab.Screen name="Sobre" component={Sobre} />
     </Tab.Navigator>
   );
 };
 
-export default Routes;
+const Routes = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={TabNavigate} />
+      <Stack.Screen name="Sobre" component={TabNavigate} />
+      <Stack.Screen name="Detalhes" component={Detalhes} />
+    </Stack.Navigator>
+  );
+};
 
 export const StackNavigate = ({ onLogin }) => {
   return (
@@ -32,7 +39,9 @@ export const StackNavigate = ({ onLogin }) => {
         component={() => <Signin onLogin={onLogin} />}
       />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={Routes} />
     </Stack.Navigator>
   );
 };
+
+export default Routes;

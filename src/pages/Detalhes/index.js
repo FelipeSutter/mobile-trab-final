@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import api from "../../../service/api";
-import loadImg from "../../../assets/clef-1.1s-200px.png";
+import loadImg from "../../../assets/music.gif";
 
 const Detalhes = ({ route }) => {
   const [musica, setMusica] = useState({});
@@ -26,7 +26,7 @@ const Detalhes = ({ route }) => {
       } finally {
         setLoading(false);
       }
-    }, 700);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -35,12 +35,12 @@ const Detalhes = ({ route }) => {
 
   if (loading) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#b0d6ff" />
-      </View>
       // <View style={styles.container}>
-      //   <Text style={[styles.textArtist, styles.text]}>Loading...</Text>
+      //   <ActivityIndicator size="large" color="#b0d6ff" />
       // </View>
+      <View style={styles.container}>
+        <Image source={loadImg} style={{ width: 256, height: 88 }} />
+      </View>
     );
   }
 
