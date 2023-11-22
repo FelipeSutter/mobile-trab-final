@@ -4,16 +4,16 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {Video} from "expo-av"
-import BackgroundVideo from "../../../assets/womanMusic22.mp4"
-import {BlurView} from "expo-blur"
+import { Video } from "expo-av";
+import BackgroundVideo from "../../../assets/womanMusic22.mp4";
+import { BlurView } from "expo-blur";
 
 const Signin = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
   const navigation = useNavigation();
-  const [status, setStatus] = useState({})
+  const [status, setStatus] = useState({});
 
   const handleLogin = async () => {
     if (!email || !senha) {
@@ -21,12 +21,13 @@ const Signin = ({ onLogin }) => {
       return;
     }
 
-    const verifyEmail = await AsyncStorage.getItem("@Async:emailUser");
-    const verifySenha = await AsyncStorage.getItem("@Async:passUser");
+    const verifyEmail = await AsyncStorage.getItem("@emailUser");
+    const verifySenha = await AsyncStorage.getItem("@passUser");
 
     console.log({ verifyEmail });
+    console.log({ verifySenha });
 
-    if (verifyEmail != email && verifySenha != senha) {
+    if (verifyEmail != email || verifySenha != senha) {
       setEmail("");
       setSenha("");
       setError("ERRADO"); /* TODO trocar mensagem */
@@ -38,21 +39,19 @@ const Signin = ({ onLogin }) => {
 
   return (
     <View style={styles.container}>
-      <Video source={BackgroundVideo}
-            shouldPlay
-            resizeMode="cover"
-            isLopping={true}
-            onPlaybackStatusUpdate={setStatus}
-            style={styles.video}
+      <Video
+        source={BackgroundVideo}
+        shouldPlay
+        resizeMode="cover"
+        isLopping={true}
+        onPlaybackStatusUpdate={setStatus}
+        style={styles.video}
       />
 
-      <BlurView 
-      tint ="light"
-      intensity={50}
-      style={styles.content}>
+      <BlurView tint="light" intensity={50} style={styles.content}>
         <Input
           type="email"
-          placeholder="Digite seu E-mail"
+          placeholder="Digite seu Nome"
           value={email}
           onChange={(value) => setEmail(value)}
         />
@@ -68,12 +67,10 @@ const Signin = ({ onLogin }) => {
           text="Entrar"
           onPress={() => handleLogin()}
         />
-        <Text style={styles.labelSignup}>
-          Não tem uma conta?{" "}  
-        </Text>
+        <Text style={styles.labelSignup}>Não tem uma conta? </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-            <Text style={styles.strong}>Registre-se</Text>
-          </TouchableOpacity>
+          <Text style={styles.strong}>Registre-se</Text>
+        </TouchableOpacity>
       </BlurView>
     </View>
   );
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 350,
     borderRadius: 5,
-    overflow:"hidden",
+    overflow: "hidden",
     shadowColor: "#000",
     borderStyle: "solid",
     borderColor: "#fff",
@@ -114,7 +111,7 @@ const styles = StyleSheet.create({
   labelSignup: {
     fontSize: 16,
     color: "black",
-    textAlign: "center"
+    textAlign: "center",
   },
   labelError: {
     fontSize: 14,
@@ -122,16 +119,16 @@ const styles = StyleSheet.create({
   },
   strong: {
     color: "black",
-    textAlign: "center"
+    textAlign: "center",
   },
-  video:{
+  video: {
     flex: 1,
-    width:"100%",
-    height:"100%",
-    position:"absolute",
+    width: "100%",
+    height: "100%",
+    position: "absolute",
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-  }
+  },
 });

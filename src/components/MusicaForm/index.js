@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, TextInput, Button, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import axios from "axios";
 import { Picker } from "@react-native-picker/picker";
 import api from "../../../service/api";
@@ -98,7 +106,11 @@ function MusicaForm({ handleSubmit, btnText, musicaData }) {
             }
           }}
         >
-          <Picker.Item label="Selecione uma categoria" value={null} />
+          <Picker.Item
+            label="Selecione uma categoria"
+            value={null}
+            style={{ color: "gray", textAlign: "center" }}
+          />
           {categories.map((category) => (
             <Picker.Item
               key={category.id}
@@ -108,7 +120,9 @@ function MusicaForm({ handleSubmit, btnText, musicaData }) {
           ))}
         </Picker>
       </View>
-      <Button onPress={submit} title={btnText} />
+      <TouchableOpacity onPress={submit} style={styles.button}>
+        <Text style={styles.textButton}>{btnText}</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -119,20 +133,36 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: "gray",
+    borderColor: "#b0d6ff",
     borderWidth: 1,
     marginBottom: 10,
     paddingLeft: 10,
+    backgroundColor: "#e2e2e2",
+    justifyContent: "center",
+    alignItems: "center",
   },
   pickerContainer: {
     height: 40,
-    borderColor: "gray",
+    borderColor: "#b0d6ff",
     borderWidth: 1,
     marginBottom: 10,
+    backgroundColor: "#e2e2e2",
   },
   picker: {
     height: 40,
     paddingLeft: 10,
+    textAlign: "center",
+  },
+  button: {
+    backgroundColor: "#b0d6ff",
+    width: 300,
+    height: 40,
+    padding: 8,
+  },
+  textButton: {
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "500",
   },
 });
 

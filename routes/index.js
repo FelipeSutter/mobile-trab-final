@@ -55,7 +55,11 @@ export const StackNavigate = ({ onLogin }) => {
       <Stack.Screen name="Signin" options={{ headerShown: false }}>
         {(props) => <Signin {...props} onLogin={onLogin} />}
       </Stack.Screen>
-      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen
+        name="Signup"
+        component={Signup}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Home" component={Routes} />
       <Stack.Screen name="NovaMusica" component={NovaMusica} />
     </Stack.Navigator>

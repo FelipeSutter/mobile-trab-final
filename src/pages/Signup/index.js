@@ -3,15 +3,15 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {Video} from "expo-av"
-import BackgroundVideo from "../../../assets/womanMusic2.mp4"
+import { Video } from "expo-av";
+import BackgroundVideo from "../../../assets/womanMusic2.mp4";
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [emailConf, setEmailConf] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
-  const [status, setStatus] = useState({})
+  const [status, setStatus] = useState({});
 
   const handleSignup = async () => {
     if (!email || !emailConf || !senha) {
@@ -22,8 +22,8 @@ const Signup = ({ navigation }) => {
       return;
     }
 
-    await AsyncStorage.setItem("@Async:emailUser", email);
-    await AsyncStorage.setItem("@Async:passUser", senha);
+    await AsyncStorage.setItem("@emailUser", email);
+    await AsyncStorage.setItem("@passUser", senha);
 
     // if (res) {
     //   setEmail("");
@@ -39,23 +39,24 @@ const Signup = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Video source={BackgroundVideo}
-            shouldPlay
-            resizeMode="cover"
-            isLopping={true}
-            onPlaybackStatusUpdate={setStatus}
-            style={styles.video}
+      <Video
+        source={BackgroundVideo}
+        shouldPlay
+        resizeMode="cover"
+        isLopping={true}
+        onPlaybackStatusUpdate={setStatus}
+        style={styles.video}
       />
       <View style={styles.content}>
         <Input
           type="email"
-          placeholder="Digite seu E-mail"
+          placeholder="Digite seu Nome"
           value={email}
           onChange={(value) => setEmail(value)}
         />
         <Input
           type="email"
-          placeholder="Confirme seu E-mail"
+          placeholder="Confirme seu Nome"
           value={emailConf}
           onChange={(value) => setEmailConf(value)}
         />
@@ -72,7 +73,7 @@ const Signup = ({ navigation }) => {
           onPress={handleSignup}
         />
         <Text style={styles.labelSignin}>
-          Já tem uma conta?{" "}
+          Já tem uma conta?
           <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
             <Text style={styles.strong}>Entre</Text>
           </TouchableOpacity>
@@ -119,14 +120,14 @@ const styles = StyleSheet.create({
     color: "#007bff", // Cor do link
     textDecorationLine: "underline",
   },
-  video:{
+  video: {
     flex: 1,
-    width:"100%",
-    height:"100%",
-    position:"absolute",
+    width: "100%",
+    height: "100%",
+    position: "absolute",
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-  }
+  },
 });
