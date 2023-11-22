@@ -21,8 +21,9 @@ const Signin = ({ onLogin }) => {
     const verifySenha = await AsyncStorage.getItem("@Async:passUser");
 
     console.log({ verifyEmail });
+    console.log({ verifySenha });
 
-    if (verifyEmail != email && verifySenha != senha) {
+    if (verifyEmail != email || verifySenha != senha) {
       setEmail("");
       setSenha("");
       setError("ERRADO"); /* TODO trocar mensagem */
