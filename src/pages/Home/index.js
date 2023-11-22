@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import api from "../../../service/api";
 import ListaCategoria from "../../components/ListCategoria";
-import { useFonts, Raleway_400Regular, Raleway_700Bold } from '@expo-google-fonts/raleway';
-
+import {
+  useFonts,
+  Raleway_400Regular,
+  Raleway_700Bold,
+} from "@expo-google-fonts/raleway";
 
 const Home = ({ route }) => {
   const [musicas, setMusicas] = useState([]);
@@ -43,81 +54,110 @@ const Home = ({ route }) => {
 
       {/* Card central de apresentação */}
       <View style={styles.blueCard}>
-  <View style={styles.cardContent}>
-    {/* Foto Redonda */}
-    <Image
-      source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-      style={styles.profileImage}
-    />
-    
-    {/* Texto à direita da foto */}
-    <View style={styles.textContainer}>
-      {/* Título Grande */}
-      <Text style={styles.cardTitle} numberOfLines={2} ellipsizeMode="tail">Título Principal</Text>
+        <View style={styles.cardContent}>
+          {/* Foto Redonda */}
+          <Image
+            source={{
+              uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+            }}
+            style={styles.profileImage}
+          />
 
-      {/* Frase com fonte menor */}
-      <Text style={styles.cardSubtitle} numberOfLines={2} ellipsizeMode="tail">Colocar uma frase complementar.</Text>
-    </View>
-     
-  </View>
-  {/* Botão "Escute já" no canto inferior direito */}
-  <TouchableOpacity style={styles.listenButton}>
-      <Text style={styles.listenButtonText}>Escute já</Text>
-    </TouchableOpacity>
-</View>
+          {/* Texto à direita da foto */}
+          <View style={styles.textContainer}>
+            {/* Título Grande */}
+            <Text
+              style={styles.cardTitle}
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            >
+              Título Principal
+            </Text>
+
+            {/* Frase com fonte menor */}
+            <Text
+              style={styles.cardSubtitle}
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            >
+              Colocar uma frase complementar.
+            </Text>
+          </View>
+        </View>
+        {/* Botão "Escute já" no canto inferior direito */}
+        <TouchableOpacity style={styles.listenButton}>
+          <Text style={styles.listenButtonText}>Escute já</Text>
+        </TouchableOpacity>
+      </View>
 
       {/* Sessão "Top Artistas" */}
-     
+
       <View style={styles.topArtistsSection}>
-        
         <Text style={styles.sectionTitle}>Top Artistas</Text>
-        
+
         <View style={styles.artistImages}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
-          <Image
-            source={{ uri: 'https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg' }}
-            style={styles.artistImage}
-          />
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.artistImage}
+            />
           </ScrollView>
         </View>
 
         <Text style={styles.favorites}>Suas favoritas</Text>
-        
       </View>
       {/* lista de Categorias */}
-      <ListaCategoria musicas={musicas} />
+      <ListaCategoria musicas={musicas} setMusicas={setMusicas} />
     </SafeAreaView>
   );
 };
@@ -127,7 +167,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#141A35"
+    backgroundColor: "#141A35",
   },
   header: {
     flexDirection: "row",
@@ -143,26 +183,26 @@ const styles = StyleSheet.create({
   linkText: {
     fontSize: 16,
     color: "blue",
-    fontFamily: 'Raleway_400Regular',
+    fontFamily: "Raleway_400Regular",
   },
   blueCard: {
     backgroundColor: "#ffd23e",
-    margin: 10, 
+    margin: 10,
     marginTop: 30,
-    padding: 20, 
-    borderRadius: 25, 
-    width: "95%", 
-    height: 180, 
+    padding: 20,
+    borderRadius: 25,
+    width: "95%",
+    height: 180,
   },
   cardContent: {
     flexDirection: "row",
     alignItems: "center",
   },
   profileImage: {
-    width: 110, 
-    height: 110, 
-    borderRadius: 50, 
-    marginBottom: -50, 
+    width: 110,
+    height: 110,
+    borderRadius: 50,
+    marginBottom: -50,
     marginRight: 50,
   },
   textContainer: {
@@ -171,12 +211,12 @@ const styles = StyleSheet.create({
   cardTitle: {
     color: "white",
     fontSize: 20,
-    fontFamily: 'Raleway_700Bold',
+    fontFamily: "Raleway_700Bold",
   },
   cardSubtitle: {
     color: "white",
     fontSize: 16,
-    fontFamily: 'Raleway_400Regular',
+    fontFamily: "Raleway_400Regular",
   },
 
   blueCardText: {
@@ -184,15 +224,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   topArtistsSection: {
-    marginTop: 24, 
+    marginTop: 24,
     alignItems: "center",
     marginBottom: 30,
-
   },
   sectionTitle: {
     fontSize: 20,
-    fontFamily: 'Raleway_700Bold',
-    color:"#ECECEC"
+    fontFamily: "Raleway_700Bold",
+    color: "#ECECEC",
   },
   artistImages: {
     flexDirection: "row",
@@ -201,34 +240,34 @@ const styles = StyleSheet.create({
   artistImage: {
     width: 80,
     height: 80,
-    borderRadius: 40, 
+    borderRadius: 40,
     marginHorizontal: 10,
   },
   listenButton: {
     backgroundColor: "white",
     borderRadius: 10,
-    paddingVertical: 6, 
-    paddingHorizontal: 10,  
+    paddingVertical: 6,
+    paddingHorizontal: 10,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 10,
     width: "50%",
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
   },
   listenButtonText: {
     color: "blue",
     fontSize: 16,
-    fontFamily: 'Raleway_400Regular',
+    fontFamily: "Raleway_400Regular",
   },
 
-  favorites:{
+  favorites: {
     color: "white",
     fontSize: 20,
-    fontFamily: 'Raleway_700Bold',
-    textAlign:"center",
+    fontFamily: "Raleway_700Bold",
+    textAlign: "center",
     justifyContent: "center",
     marginTop: 20,
-  }
+  },
 });
 
 export default Home;
