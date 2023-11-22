@@ -35,7 +35,7 @@ function NovaMusica({ navigation }) {
     <>
       <View style={styles.novaMusicaContainer}>
         <Text style={styles.title}>Adicionar Música</Text>
-        <Text>Poste sua música!</Text>
+        <Text style={styles.minorTitle}>Poste sua música!</Text>
         <MusicaForm
           musicaData={musicas}
           handleSubmit={createPost}
@@ -48,12 +48,21 @@ function NovaMusica({ navigation }) {
 
 const styles = StyleSheet.create({
   novaMusicaContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
+    backgroundColor: "#141A35",
   },
   title: {
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: "bold",
     marginBottom: 10,
+    color: "#e2e2e2",
+  },
+  minorTitle: {
+    fontSize: 24,
+    color: "#e2e2e2",
   },
 });
 

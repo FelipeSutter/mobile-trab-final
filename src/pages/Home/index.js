@@ -23,6 +23,13 @@ const Home = ({ route }) => {
     Raleway_700Bold,
   });
 
+  let loginUser;
+
+  const getLogin = async () => {
+    const login = AsyncStorage.getItem("@emailUser");
+    loginUser = login;
+  };
+
   const getMusicas = async () => {
     try {
       const { data } = await api.get();
@@ -34,6 +41,7 @@ const Home = ({ route }) => {
 
   useEffect(() => {
     getMusicas();
+    getLogin();
   }, []);
 
   if (!fontsLoaded) {
@@ -45,7 +53,7 @@ const Home = ({ route }) => {
       {/* Cabeçalho */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.link}>
-          <Text style={styles.linkText}>Home</Text>
+          <Text style={styles.linkText}>Olá {loginUser}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.link}>
           <Text style={styles.linkText}>Categorias</Text>
@@ -173,7 +181,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
-    backgroundColor: "#eee",
     width: "100%",
   },
   link: {
