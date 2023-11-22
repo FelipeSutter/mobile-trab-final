@@ -3,12 +3,15 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Video} from "expo-av"
+import BackgroundVideo from "../../../assets/womanMusic2.mp4"
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [emailConf, setEmailConf] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
+  const [status, setStatus] = useState({})
 
   const handleSignup = async () => {
     if (!email || !emailConf || !senha) {
@@ -36,6 +39,13 @@ const Signup = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Video source={BackgroundVideo}
+            shouldPlay
+            resizeMode="cover"
+            isLopping={true}
+            onPlaybackStatusUpdate={setStatus}
+            style={styles.video}
+      />
       <View style={styles.content}>
         <Input
           type="email"
@@ -109,4 +119,14 @@ const styles = StyleSheet.create({
     color: "#007bff", // Cor do link
     textDecorationLine: "underline",
   },
+  video:{
+    flex: 1,
+    width:"100%",
+    height:"100%",
+    position:"absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  }
 });
