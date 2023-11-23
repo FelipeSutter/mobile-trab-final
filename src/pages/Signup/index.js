@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {BlurView} from "expo-blur"
 import { Video } from "expo-av";
 import BackgroundVideo from "../../../assets/womanMusic2.mp4";
 
@@ -43,11 +44,15 @@ const Signup = ({ navigation }) => {
         source={BackgroundVideo}
         shouldPlay
         resizeMode="cover"
-        isLopping={true}
+        isLooping={true}
         onPlaybackStatusUpdate={setStatus}
         style={styles.video}
       />
-      <View style={styles.content}>
+         <Text style={styles.titleSingup}>Cadastre-se</Text>
+      <BlurView 
+      tint ="light"
+      intensity={50}
+      style={styles.content}>
         <Input
           type="email"
           placeholder="Digite seu Nome"
@@ -78,8 +83,9 @@ const Signup = ({ navigation }) => {
             <Text style={styles.strong}>Entre</Text>
           </TouchableOpacity>
         </Text>
+        </BlurView>
       </View>
-    </View>
+
   );
 };
 
@@ -97,6 +103,7 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 350,
     borderRadius: 5,
+    overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -130,4 +137,9 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
+
+  titleSingup:{
+    fontSize: 40,
+    color: "#fff"
+  }
 });

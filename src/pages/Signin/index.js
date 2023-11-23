@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Video } from "expo-av";
+import LogoImage from "../../../assets/logoApp.png";
 import BackgroundVideo from "../../../assets/womanMusic22.mp4";
 import { BlurView } from "expo-blur";
 
@@ -43,10 +44,12 @@ const Signin = ({ onLogin }) => {
         source={BackgroundVideo}
         shouldPlay
         resizeMode="cover"
-        isLopping={true}
+        isLooping={true}
         onPlaybackStatusUpdate={setStatus}
         style={styles.video}
       />
+
+      <Image source={LogoImage} style={styles.logo} />
 
       <BlurView tint="light" intensity={50} style={styles.content}>
         <Input
@@ -130,5 +133,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
+    borderRadius: 100,
   },
 });
