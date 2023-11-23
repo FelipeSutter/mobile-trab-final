@@ -39,6 +39,7 @@ export default function ModalEdicao({
           category: item.category,
         }
       );
+      alert("Música editada com sucesso!");
       setModalVisible(false);
     } catch (error) {
       console.log("Erro ao atualizar os dados:", error);
