@@ -15,7 +15,6 @@ import {
   Raleway_400Regular,
   Raleway_700Bold,
 } from "@expo-google-fonts/raleway";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = ({ route }) => {
   const [musicas, setMusicas] = useState([]);
@@ -166,7 +165,7 @@ const Home = ({ route }) => {
         <Text style={styles.favorites}>Suas favoritas</Text>
       </View>
       {/* lista de Categorias */}
-      <ListaCategoria musicas={musicas} />
+      <ListaCategoria musicas={musicas} setMusicas={setMusicas} />
     </SafeAreaView>
   );
 };
@@ -177,7 +176,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#141A35",
-    paddingTop: 50,
   },
   header: {
     flexDirection: "row",

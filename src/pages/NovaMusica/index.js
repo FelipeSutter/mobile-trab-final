@@ -16,10 +16,11 @@ function NovaMusica({ navigation }) {
 
       setMusicas((prevMusicas) => [response.data, ...prevMusicas]);
 
-      alert("Música postada com sucesso!");
+      alert("Música postada com sucesso!!");
 
       navigation.navigate("Home", {
         message: "Música postada com sucesso!",
+        NovaMusica: response.data,
       });
     } catch (error) {
       console.error("Erro ao postar a música:", error);
