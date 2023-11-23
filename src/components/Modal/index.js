@@ -20,25 +20,29 @@ export default function ModalEdicao({
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    setItem(music);
-  }, []);
+    // Atualize o estado apenas se houver uma música válida
+    if (music) {
+      setItem(music);
+    }
+  }, [music]);
 
-  const handleSaveEdit = () => {
+  const handleSaveEdit = async () => {
     onSaveEdit();
-    axios
-      .put(`https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/${item.id}`, {
-        url: item.url,
-        title: item.title,
-        artist: item.artist,
-        description: item.description,
-        category: item.category,
-      })
-      .then((response) => {
-        setModalVisible(false);
-      })
-      .catch((error) => {
-        console.error("Erro ao atualizar os dados:", error);
-      });
+    try {
+      await axios.put(
+        `https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/${item.id}`,
+        {
+          url: item.url,
+          title: item.title,
+          artist: item.artist,
+          description: item.description,
+          category: item.category,
+        }
+      );
+      setModalVisible(false);
+    } catch (error) {
+      console.log("Erro ao atualizar os dados:", error);
+    }
   };
 
   const handleCancelEdit = () => {
@@ -51,45 +55,45 @@ export default function ModalEdicao({
       animationIn="slideInUp"
       animationOut="slideOutDown"
       onBackdropPress={() => setModalVisible(false)}
-      onBackButtonPress={() => false} // Alteração aqui para retornar false
+      onBackButtonPress={() => false}
     >
-      <KeyboardAvoidingView behavior="padding" style={styles.modalContainer}>
+      <View style={styles.modalContainer}>
         <Text>Editar Música</Text>
         <TextInput
           style={styles.input}
           placeholder="URL da Imagem"
           value={item.url}
-          onChangeText={(e) => setItem(e.target.value)}
+          onChangeText={(text) => setItem({ ...item, url: text })}
         />
         <TextInput
           style={styles.input}
           placeholder="Nome da Música"
           value={item.title}
-          onChangeText={(e) => setItem(e.target.value)}
+          onChangeText={(text) => setItem({ ...item, title: text })}
         />
         <TextInput
           style={styles.input}
           placeholder="Nome do Artista"
           value={item.artist}
-          onChangeText={(e) => setItem(e.target.value)}
+          onChangeText={(text) => setItem({ ...item, artist: text })}
         />
         <TextInput
           style={styles.input}
           placeholder="Descrição"
           value={item.description}
-          onChangeText={(e) => setItem(e.target.value)}
+          onChangeText={(text) => setItem({ ...item, description: text })}
         />
         <TextInput
           style={styles.input}
           placeholder="Categoria"
           value={item.category}
-          onChangeText={(e) => setItem(e.target.value)}
+          onChangeText={(text) => setItem({ ...item, category: text })}
         />
         <View style={styles.buttonContainer}>
           <Button title="Salvar" onPress={handleSaveEdit} />
           <Button title="Cancelar" onPress={handleCancelEdit} />
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </RNModal>
   );
 }

@@ -10,11 +10,48 @@ import {
 } from "react-native";
 import api from "../../../service/api";
 import ListaCategoria from "../../components/ListCategoria";
+import AppIntroSlider from "react-native-app-intro-slider";
 import {
   useFonts,
   Raleway_400Regular,
   Raleway_700Bold,
 } from "@expo-google-fonts/raleway";
+
+const slides = [
+  {
+    key: "1",
+    title: "Titulo principal",
+    text: "Colocar uma frase complementar",
+    image: {
+      uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+    },
+    button: {
+      text: "Escute já",
+    },
+  },
+  {
+    key: "2",
+    title: "Titulo principal 2",
+    text: "Colocar uma frase complementar 2",
+    image: {
+      uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+    },
+    button: {
+      text: "Escute já",
+    },
+  },
+  {
+    key: "3",
+    title: "Titulo principal 3",
+    text: "Colocar uma frase complementar 3",
+    image: {
+      uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+    },
+    button: {
+      text: "Escute já",
+    },
+  },
+];
 
 const Home = ({ route }) => {
   const [musicas, setMusicas] = useState([]);
@@ -22,6 +59,25 @@ const Home = ({ route }) => {
     Raleway_400Regular,
     Raleway_700Bold,
   });
+
+  function renderSlider({ item }) {
+    return (
+      <View>
+        <View style={styles.sliderContainer}>
+          <View style={styles.sliderContainerCol}>
+            <Image source={item.image} style={styles.profileImage} />
+          </View>
+          <View style={styles.sliderContainerCol}>
+            <Text style={styles.cardTitle}>{item.title}</Text>
+            <Text style={styles.cardSubtitle}>{item.text}</Text>
+            <TouchableOpacity style={styles.listenButton}>
+              <Text style={styles.listenButtonText}>Escute já</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    );
+  }
 
   let loginUser;
 
@@ -50,122 +106,97 @@ const Home = ({ route }) => {
   }
   return (
     <SafeAreaView style={styles.container}>
-      {/* Cabeçalho */}
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.linkText}>Olá {loginUser}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.linkText}>Categorias</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView>
+        {/* Cabeçalho */}
+        <View style={styles.header}>
+          <TouchableOpacity style={styles.link}>
+            <Text style={styles.linkText}>Olá {loginUser}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.link}>
+            <Text style={styles.linkText}>Categorias</Text>
+          </TouchableOpacity>
+        </View>
 
-      {/* Card central de apresentação */}
-      <View style={styles.blueCard}>
-        <View style={styles.cardContent}>
-          {/* Foto Redonda */}
-          <Image
-            source={{
-              uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+        {/* Card central de apresentação */}
+        <View style={styles.blueCard}>
+          <AppIntroSlider
+            renderItem={renderSlider}
+            data={slides}
+            activeDotStyle={{
+              backgroundColor: "#009cff",
             }}
-            style={styles.profileImage}
           />
+        </View>
 
-          {/* Texto à direita da foto */}
-          <View style={styles.textContainer}>
-            {/* Título Grande */}
-            <Text
-              style={styles.cardTitle}
-              numberOfLines={2}
-              ellipsizeMode="tail"
-            >
-              Título Principal
-            </Text>
+        {/* Sessão "Top Artistas" */}
 
-            {/* Frase com fonte menor */}
-            <Text
-              style={styles.cardSubtitle}
-              numberOfLines={2}
-              ellipsizeMode="tail"
-            >
-              Colocar uma frase complementar.
-            </Text>
+        <View style={styles.topArtistsSection}>
+          <Text style={styles.sectionTitle}>Top Artistas</Text>
+
+          <View style={styles.artistImages}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+            </ScrollView>
           </View>
+
+          <Text style={styles.favorites}>Suas favoritas</Text>
         </View>
-        {/* Botão "Escute já" no canto inferior direito */}
-        <TouchableOpacity style={styles.listenButton}>
-          <Text style={styles.listenButtonText}>Escute já</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Sessão "Top Artistas" */}
-
-      <View style={styles.topArtistsSection}>
-        <Text style={styles.sectionTitle}>Top Artistas</Text>
-
-        <View style={styles.artistImages}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-          </ScrollView>
-        </View>
-
-        <Text style={styles.favorites}>Suas favoritas</Text>
-      </View>
-      {/* lista de Categorias */}
-      <ListaCategoria musicas={musicas} setMusicas={setMusicas} />
+        {/* lista de Categorias */}
+        <ListaCategoria musicas={musicas} setMusicas={setMusicas} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -197,9 +228,20 @@ const styles = StyleSheet.create({
     margin: 10,
     marginTop: 30,
     padding: 20,
+    paddingBottom: 0,
     borderRadius: 25,
     width: "95%",
-    height: 180,
+    height: 210,
+  },
+  sliderContainerCol: {
+    display: "flex",
+    alignSelf: "center",
+    flexDirection: "column",
+  },
+  sliderContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 26,
   },
   cardContent: {
     flexDirection: "row",
@@ -209,8 +251,6 @@ const styles = StyleSheet.create({
     width: 110,
     height: 110,
     borderRadius: 50,
-    marginBottom: -50,
-    marginRight: 50,
   },
   textContainer: {
     flex: 1,
@@ -259,7 +299,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 10,
     width: "50%",
-    alignSelf: "flex-end",
   },
   listenButtonText: {
     color: "blue",
