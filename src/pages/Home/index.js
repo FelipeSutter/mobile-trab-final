@@ -50,122 +50,124 @@ const Home = ({ route }) => {
   }
   return (
     <SafeAreaView style={styles.container}>
-      {/* Cabeçalho */}
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.linkText}>Olá {loginUser}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.linkText}>Categorias</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView>
+        {/* Cabeçalho */}
+        <View style={styles.header}>
+          <TouchableOpacity style={styles.link}>
+            <Text style={styles.linkText}>Olá {loginUser}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.link}>
+            <Text style={styles.linkText}>Categorias</Text>
+          </TouchableOpacity>
+        </View>
 
-      {/* Card central de apresentação */}
-      <View style={styles.blueCard}>
-        <View style={styles.cardContent}>
-          {/* Foto Redonda */}
-          <Image
-            source={{
-              uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-            }}
-            style={styles.profileImage}
-          />
+        {/* Card central de apresentação */}
+        <View style={styles.blueCard}>
+          <View style={styles.cardContent}>
+            {/* Foto Redonda */}
+            <Image
+              source={{
+                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+              }}
+              style={styles.profileImage}
+            />
 
-          {/* Texto à direita da foto */}
-          <View style={styles.textContainer}>
-            {/* Título Grande */}
-            <Text
-              style={styles.cardTitle}
-              numberOfLines={2}
-              ellipsizeMode="tail"
-            >
-              Título Principal
-            </Text>
+            {/* Texto à direita da foto */}
+            <View style={styles.textContainer}>
+              {/* Título Grande */}
+              <Text
+                style={styles.cardTitle}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                Título Principal
+              </Text>
 
-            {/* Frase com fonte menor */}
-            <Text
-              style={styles.cardSubtitle}
-              numberOfLines={2}
-              ellipsizeMode="tail"
-            >
-              Colocar uma frase complementar.
-            </Text>
+              {/* Frase com fonte menor */}
+              <Text
+                style={styles.cardSubtitle}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                Colocar uma frase complementar.
+              </Text>
+            </View>
           </View>
-        </View>
-        {/* Botão "Escute já" no canto inferior direito */}
-        <TouchableOpacity style={styles.listenButton}>
-          <Text style={styles.listenButtonText}>Escute já</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Sessão "Top Artistas" */}
-
-      <View style={styles.topArtistsSection}>
-        <Text style={styles.sectionTitle}>Top Artistas</Text>
-
-        <View style={styles.artistImages}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-            <Image
-              source={{
-                uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
-              }}
-              style={styles.artistImage}
-            />
-          </ScrollView>
+          {/* Botão "Escute já" no canto inferior direito */}
+          <TouchableOpacity style={styles.listenButton}>
+            <Text style={styles.listenButtonText}>Escute já</Text>
+          </TouchableOpacity>
         </View>
 
-        <Text style={styles.favorites}>Suas favoritas</Text>
-      </View>
-      {/* lista de Categorias */}
-      <ListaCategoria musicas={musicas} setMusicas={setMusicas} />
+        {/* Sessão "Top Artistas" */}
+
+        <View style={styles.topArtistsSection}>
+          <Text style={styles.sectionTitle}>Top Artistas</Text>
+
+          <View style={styles.artistImages}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+              <Image
+                source={{
+                  uri: "https://jpimg.com.br/uploads/2021/03/bruno-mars.jpg",
+                }}
+                style={styles.artistImage}
+              />
+            </ScrollView>
+          </View>
+
+          <Text style={styles.favorites}>Suas favoritas</Text>
+        </View>
+        {/* lista de Categorias */}
+        <ListaCategoria musicas={musicas} setMusicas={setMusicas} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
