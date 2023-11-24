@@ -53,7 +53,7 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
           <Icon name="pencil" size={22} color="white" />
         </View>
       ),
-      backgroundColor: "#737b79",
+      backgroundColor: "#141A35",
       onPress: () => {
         openEditModal();
       },
@@ -64,7 +64,7 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
           <Icon name="trash" size={22} color="white" />
         </View>
       ),
-      backgroundColor: "#ea0010",
+      backgroundColor: "#141A35",
       onPress: deleteMusic,
     },
   ]);
@@ -185,13 +185,23 @@ const styles = StyleSheet.create({
   },
   containerSwipe: {
     backgroundColor: "#141A35",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   iconBackContainer: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#ea0010",
+    padding: 10,
+    marginTop: 20,
+    marginLeft: 20,
+    marginRight: 5,
   },
+
   favorites: {
     color: "#fff",
     textAlign: "center",
