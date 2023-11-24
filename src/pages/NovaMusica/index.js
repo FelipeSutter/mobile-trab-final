@@ -11,6 +11,10 @@ import {
 
 function NovaMusica({ navigation }) {
   const [musicas, setMusicas] = useState([]);
+  const [fontsLoaded] = useFonts({
+    Raleway_400Regular,
+    Raleway_700Bold,
+  });
 
   const createPost = async (musica, retryCount = 3) => {
     try {
@@ -18,11 +22,6 @@ function NovaMusica({ navigation }) {
         "https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/",
         musica
       );
-
-      const [fontsLoaded] = useFonts({
-        Raleway_400Regular,
-        Raleway_700Bold,
-      });
 
       setMusicas((prevMusicas) => [response.data, ...prevMusicas]);
 
