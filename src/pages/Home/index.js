@@ -45,7 +45,7 @@ const slides = [
   },
   {
     key: "3",
-    title: "Caneta Azul",
+    title: "Adele",
     text: "SkyFall",
     backgroundColor: "#1d9ebe",
     image: {
@@ -136,14 +136,7 @@ const Home = ({ route }) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* Cabeçalho */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.link}>
-            <Text style={styles.linkText}>Olá {loginUser}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.link}>
-            <Text style={styles.linkText}>Categorias</Text>
-          </TouchableOpacity>
-        </View>
+        <View style={styles.header}></View>
 
         {/* Card central de apresentação */}
         {/* <View style={styles.blueCard}> */}
