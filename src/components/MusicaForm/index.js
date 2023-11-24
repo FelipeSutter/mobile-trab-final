@@ -120,9 +120,11 @@ function MusicaForm({ handleSubmit, btnText, musicaData }) {
           ))}
         </Picker>
       </View>
-      <TouchableOpacity onPress={submit} style={styles.button}>
-        <Text style={styles.textButton}>{btnText}</Text>
-      </TouchableOpacity>
+      <View style={styles.containerButton}>
+        <TouchableOpacity onPress={submit} style={styles.button}>
+          <Text style={styles.textButton}>{btnText}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -135,6 +137,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "#b0d6ff",
     borderWidth: 1,
+    borderRadius: 10,
     marginBottom: 10,
     paddingLeft: 10,
     backgroundColor: "#e2e2e2",
@@ -146,6 +149,7 @@ const styles = StyleSheet.create({
     borderColor: "#b0d6ff",
     borderWidth: 1,
     marginBottom: 10,
+    borderRadius: 10,
     backgroundColor: "#e2e2e2",
   },
   picker: {
@@ -153,9 +157,14 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     textAlign: "center",
   },
+  containerButton: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   button: {
     backgroundColor: "#b0d6ff",
-    width: 300,
+    borderRadius: 10,
+    width: 150,
     height: 40,
     padding: 8,
   },
