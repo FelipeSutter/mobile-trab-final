@@ -36,7 +36,7 @@ const TabNavigate = () => {
 
 const Routes = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Home"
         component={TabNavigate}

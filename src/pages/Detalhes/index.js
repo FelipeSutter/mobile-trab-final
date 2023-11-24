@@ -49,7 +49,6 @@ const Detalhes = ({ route }) => {
       <ScrollView>
         <View style={styles.containerInfo}>
           <Image source={{ uri: musica.url }} style={styles.img} />
-
           <Text style={[styles.textArtist, styles.text]}>{musica.artist}</Text>
           <Text style={[styles.textMusic, styles.text]}>{musica.title}</Text>
           <Text style={[styles.textDescription, styles.text]}>
@@ -96,6 +95,7 @@ const styles = StyleSheet.create({
   },
   textDescription: {
     fontSize: 20,
+    textAlign: "center",
   },
 });
 
