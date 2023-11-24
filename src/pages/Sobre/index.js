@@ -1,5 +1,11 @@
 import React from "react";
 import {
+  useFonts,
+  Raleway_400Regular,
+  Raleway_700Bold,
+} from "@expo-google-fonts/raleway";
+
+import {
   View,
   Text,
   Image,
@@ -43,6 +49,11 @@ const Sobre = () => {
     },
   ];
 
+  const [fontsLoaded] = useFonts({
+    Raleway_400Regular,
+    Raleway_700Bold,
+  });
+
   const abrirGitHub = (url) => {
     Linking.openURL(url);
   };
@@ -69,7 +80,7 @@ const Sobre = () => {
           <Text style={styles.titulo}>Conheça um pouco sobre o nosso app</Text>
           <Text style={styles.descricao}>
             Este é um aplicativo de música onde você pode organizar suas
-            playlists da melhor forma possível
+            playlists da melhor forma possível!
           </Text>
           <Text style={[styles.titulo, styles.tituloFundadores]}>
             Conheça nossos fundadores
@@ -112,22 +123,26 @@ const styles = StyleSheet.create({
     color: "#B0D6FF",
   },
   titulo: {
+    marginTop: 60,
     color: "#e2e2e2",
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
+    fontFamily: "Raleway_700Bold",
   },
   descricao: {
     color: "#e2e2e2",
     textAlign: "center",
     marginTop: 20,
     margin: 5,
+    fontFamily: "Raleway_400Regular",
   },
   headerContainer: {
     marginBottom: 20,
   },
   tituloFundadores: {
     marginTop: 50,
+    fontFamily: "Raleway_700Bold",
   },
 });
 

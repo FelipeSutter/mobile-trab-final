@@ -3,6 +3,11 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import axios from "axios";
 import MusicaForm from "../../components/MusicaForm";
+import {
+  useFonts,
+  Raleway_400Regular,
+  Raleway_700Bold,
+} from "@expo-google-fonts/raleway";
 
 function NovaMusica({ navigation }) {
   const [musicas, setMusicas] = useState([]);
@@ -13,6 +18,11 @@ function NovaMusica({ navigation }) {
         "https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/",
         musica
       );
+
+      const [fontsLoaded] = useFonts({
+        Raleway_400Regular,
+        Raleway_700Bold,
+      });
 
       setMusicas((prevMusicas) => [response.data, ...prevMusicas]);
 
@@ -41,7 +51,9 @@ function NovaMusica({ navigation }) {
     <>
       <View style={styles.novaMusicaContainer}>
         <Text style={styles.title}>Adicionar Música</Text>
-        <Text style={styles.minorTitle}>Poste sua música!</Text>
+        <Text style={styles.minorTitle}>
+          Fique livre para adicionar suas músicas!{" "}
+        </Text>
         <MusicaForm
           musicaData={musicas}
           handleSubmit={createPost}
@@ -65,10 +77,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     color: "#e2e2e2",
+    fontFamily: "Raleway_700Bold",
   },
   minorTitle: {
     fontSize: 24,
     color: "#e2e2e2",
+    fontFamily: "Raleway_400Regular",
+    textAlign: "center",
   },
 });
 
