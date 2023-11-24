@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Input from "../../components/Input";
+import InputSenha from "../../components/inputSenha";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {BlurView} from "expo-blur"
+import { BlurView } from "expo-blur";
 import { Video } from "expo-av";
 import BackgroundVideo from "../../../assets/womanMusic2.mp4";
 
@@ -26,14 +27,6 @@ const Signup = ({ navigation }) => {
     await AsyncStorage.setItem("@emailUser", email);
     await AsyncStorage.setItem("@passUser", senha);
 
-    // if (res) {
-    //   setEmail("");
-    //   setEmailConf("");
-    //   setSenha("");
-    //   setError(res);
-    //   return;
-    // }
-
     alert("Usuário cadastrado com sucesso!");
     navigation.navigate("Signin");
   };
@@ -48,11 +41,8 @@ const Signup = ({ navigation }) => {
         onPlaybackStatusUpdate={setStatus}
         style={styles.video}
       />
-         <Text style={styles.titleSingup}>Cadastre-se</Text>
-      <BlurView 
-      tint ="light"
-      intensity={50}
-      style={styles.content}>
+      <Text style={styles.titleSingup}>Cadastre-se</Text>
+      <BlurView tint="light" intensity={50} style={styles.content}>
         <Input
           type="email"
           placeholder="Digite seu Nome"
@@ -65,12 +55,8 @@ const Signup = ({ navigation }) => {
           value={emailConf}
           onChange={(value) => setEmailConf(value)}
         />
-        <Input
-          type="password"
-          placeholder="Digite sua Senha"
-          value={senha}
-          onChange={(value) => setSenha(value)}
-        />
+        <InputSenha setSenha={setSenha} />
+
         <Text style={styles.labelError}>{error}</Text>
         <Button
           disabled={!email || !emailConf || !senha}
@@ -83,9 +69,8 @@ const Signup = ({ navigation }) => {
             <Text style={styles.strong}>Entre</Text>
           </TouchableOpacity>
         </Text>
-        </BlurView>
-      </View>
-
+      </BlurView>
+    </View>
   );
 };
 
@@ -138,8 +123,8 @@ const styles = StyleSheet.create({
     right: 0,
   },
 
-  titleSingup:{
+  titleSingup: {
     fontSize: 40,
-    color: "#fff"
-  }
+    color: "#fff",
+  },
 });

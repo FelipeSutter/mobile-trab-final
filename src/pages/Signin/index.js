@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import Input from "../../components/Input";
+import InputSenha from "../../components/inputSenha";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -58,12 +59,8 @@ const Signin = ({ onLogin }) => {
           value={email}
           onChange={(value) => setEmail(value)}
         />
-        <Input
-          type="password"
-          placeholder="Digite sua Senha"
-          value={senha}
-          onChange={(value) => setSenha(value)}
-        />
+        <InputSenha setSenha={setSenha} />
+
         <Text style={styles.labelError}>{error}</Text>
         <Button
           disabled={!email || !senha}
