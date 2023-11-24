@@ -110,16 +110,18 @@ const styles = StyleSheet.create({
   },
   labelSignup: {
     fontSize: 16,
-    color: "black",
+    color: "#c9c8c4",
     textAlign: "center",
+    marginTop: 5,
   },
   labelError: {
     fontSize: 14,
     color: "red",
   },
   strong: {
-    color: "black",
+    color: "#383540",
     textAlign: "center",
+    textDecorationLine: "underline",
   },
   video: {
     flex: 1,

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   enabledButton: {
-    backgroundColor: "#70D460",
+    backgroundColor: "#6141AC",
   },
   disabledButton: {
     backgroundColor: "#DCDCDC",
