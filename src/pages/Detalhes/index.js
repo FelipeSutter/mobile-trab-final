@@ -15,14 +15,19 @@ const Detalhes = ({ route }) => {
   const [loading, setLoading] = useState(false);
   const { id } = route.params;
 
-  const getMusica = async () => {
+  const getMusica = async (retryCount = 3) => {
     setLoading(true);
     setTimeout(async () => {
       try {
         const { data } = await api.get(`/${id}`);
         setMusica(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        if (error.response && error.response.status === 429 && retryCount > 0) {
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          await getMusica(retryCount - 1);
+        } else {
+          console.error("Error fetching data:", error);
+        }
       } finally {
         setLoading(false);
       }

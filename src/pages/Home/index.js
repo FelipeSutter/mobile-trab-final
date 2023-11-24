@@ -109,23 +109,27 @@ const Home = ({ route }) => {
 
   let loginUser;
 
-  const getLogin = async () => {
+  const getLogin = async (retryCount = 3) => {
     const login = AsyncStorage.getItem("@emailUser");
     loginUser = login;
   };
 
-  const getMusicas = async () => {
+  const getMusicas = async (retryCount = 3) => {
     try {
-      const { data } = await api.get();
-      setMusicas(data);
+      const response = await api.get();
+      setMusicas(response.data);
     } catch (e) {
-      console.log(e);
+      if (e.response && e.response.status === 429 && retryCount > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await getMusicas(retryCount - 1);
+      } else {
+        console.log(e);
+      }
     }
   };
 
   useEffect(() => {
     getMusicas();
-    // getLogin();
   }, [musicas]);
 
   if (!fontsLoaded) {
