@@ -16,6 +16,7 @@ export default function ModalEdicao({
   modalVisible,
   setModalVisible,
   onSaveEdit,
+  setMusicas,
 }) {
   const [item, setItem] = useState({});
 
@@ -40,6 +41,7 @@ export default function ModalEdicao({
         }
       );
       alert("Música editada com sucesso!");
+      setMusicas(music);
       setModalVisible(false);
     } catch (error) {
       console.log("Erro ao atualizar os dados:", error);
@@ -64,31 +66,41 @@ export default function ModalEdicao({
           style={styles.input}
           placeholder="URL da Imagem"
           value={item.url}
-          onChangeText={(text) => setItem({ ...item, url: text })}
+          onChangeText={(text) =>
+            setItem((prevItem) => ({ ...prevItem, url: text }))
+          }
         />
         <TextInput
           style={styles.input}
           placeholder="Nome da Música"
           value={item.title}
-          onChangeText={(text) => setItem({ ...item, title: text })}
+          onChangeText={(text) =>
+            setItem((prevItem) => ({ ...prevItem, title: text }))
+          }
         />
         <TextInput
           style={styles.input}
           placeholder="Nome do Artista"
           value={item.artist}
-          onChangeText={(text) => setItem({ ...item, artist: text })}
+          onChangeText={(text) =>
+            setItem((prevItem) => ({ ...prevItem, artist: text }))
+          }
         />
         <TextInput
           style={styles.input}
           placeholder="Descrição"
           value={item.description}
-          onChangeText={(text) => setItem({ ...item, description: text })}
+          onChangeText={(text) =>
+            setItem((prevItem) => ({ ...prevItem, description: text }))
+          }
         />
         <TextInput
           style={styles.input}
           placeholder="Categoria"
           value={item.category}
-          onChangeText={(text) => setItem({ ...item, category: text })}
+          onChangeText={(text) =>
+            setItem((prevItem) => ({ ...prevItem, category: text }))
+          }
         />
         <View style={styles.buttonContainer}>
           <Button title="Salvar" onPress={handleSaveEdit} />

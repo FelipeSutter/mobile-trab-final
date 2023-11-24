@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -13,37 +20,58 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
 
   const deleteMusic = async () => {
     try {
-      await axios.delete(
+      const { data } = await axios.delete(
         `https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/${musica.id}`
       );
-      alert("Música excluída com sucesso!");
-      onDelete(musica.id);
+      Alert.alert("Sucesso", "Música excluída com sucesso!");
+      setMusicas(data);
     } catch (error) {
       console.error("Error deleting data:", error);
       alert("Ocorreu um erro ao excluir a música.");
     }
   };
 
+  const confirmDelete = () => {
+    Alert.alert(
+      "Confirmação",
+      "Deseja realmente excluir esta música?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Excluir",
+          onPress: () => deleteMusic(),
+          style: "destructive",
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
   const openEditModal = () => {
     setModalVisible(true);
   };
 
-  const handleSaveEdit = () => {
-    axios
-      .put(`https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/${musica.id}`, {
-        url: musica.url,
-        title: musica.title,
-        artist: musica.artist,
-        description: musica.description,
-        category: musica.category,
-      })
-      .then((response) => {
-        setModalVisible(false);
-        setEditedMusic(null);
-      })
-      .catch((error) => {
-        console.error("Erro ao atualizar os dados:", error);
-      });
+  const handleSaveEdit = async () => {
+    try {
+      const { data } = await axios.put(
+        `https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/${musica.id}`,
+        {
+          url: musica.url,
+          title: musica.title,
+          artist: musica.artist,
+          description: musica.description,
+          category: musica.category,
+        }
+      );
+      setMusicas(musica);
+      setModalVisible(false);
+      setEditedMusic(null);
+    } catch (e) {
+      console.log("Erro ao atualizar os dados:", e);
+    }
   };
 
   const [swipeBtns, setSwipeBtns] = useState([
@@ -65,7 +93,9 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
         </View>
       ),
       backgroundColor: "#141A35",
-      onPress: deleteMusic,
+      onPress: () => {
+        confirmDelete();
+      },
     },
   ]);
 
@@ -127,6 +157,7 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
       <ModalEdicao
         music={musica}
         modalVisible={modalVisible}
+        setMusicas={setMusicas}
         setModalVisible={() => {
           setModalVisible(false);
           setEditedMusic(null);
