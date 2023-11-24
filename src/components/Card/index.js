@@ -18,16 +18,21 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
   const [editedMusic, setEditedMusic] = useState(null);
   const navigation = useNavigation();
 
-  const deleteMusic = async () => {
+  const deleteMusic = async (retryCount = 3) => {
     try {
-      const { data } = await axios.delete(
+      const response = await axios.delete(
         `https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/${musica.id}`
       );
       Alert.alert("Sucesso", "Música excluída com sucesso!");
-      setMusicas(data);
+      setMusicas(response.data);
     } catch (error) {
-      console.error("Error deleting data:", error);
-      alert("Ocorreu um erro ao excluir a música.");
+      if (error.response && error.response.status === 429 && retryCount > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await deleteMusic(retryCount - 1);
+      } else {
+        console.error("Error deleting data:", error);
+        alert("Ocorreu um erro ao excluir a música.");
+      }
     }
   };
 
@@ -54,7 +59,7 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
     setModalVisible(true);
   };
 
-  const handleSaveEdit = async () => {
+  const handleSaveEdit = async (retryCount = 3) => {
     try {
       const { data } = await axios.put(
         `https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/${musica.id}`,
@@ -66,11 +71,17 @@ const Card = ({ musica, onDelete, listaMusicas, setMusicas }) => {
           category: musica.category,
         }
       );
+      //  se der errado colocar musica dentro do set musicas de novo
       setMusicas(musica);
       setModalVisible(false);
       setEditedMusic(null);
     } catch (e) {
-      console.log("Erro ao atualizar os dados:", e);
+      if (e.response && e.response.status === 429 && retryCount > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await handleSaveEdit(retryCount - 1);
+      } else {
+        console.log("Erro ao atualizar os dados:", e);
+      }
     }
   };
 

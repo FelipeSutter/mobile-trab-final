@@ -15,6 +15,8 @@ export default function App() {
   return (
     <NavigationContainer>
       {!isAuthenticated ? <StackNavigate onLogin={handleLogin} /> : <Routes />}
+
+      <StatusBar backgroundColor="white" />
     </NavigationContainer>
   );
 }

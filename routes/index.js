@@ -8,6 +8,9 @@ import Signin from "../src/pages/Signin";
 import Signup from "../src/pages/Signup";
 import Sobre from "../src/pages/Sobre";
 import NovaMusica from "../src/pages/NovaMusica";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,17 +21,38 @@ const TabNavigate = () => {
       <Tab.Screen
         name="Home"
         component={Home}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="home" color={color} size={size} />;
+          },
+        }}
       />
       <Tab.Screen
         name="NovaMusica"
         component={NovaMusica}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <MaterialCommunityIcons
+                name="music-note-plus"
+                color={color}
+                size={size}
+              />
+            );
+          },
+        }}
       />
       <Tab.Screen
         name="Sobre"
         component={Sobre}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            return <FontAwesome5 name="users" color={color} size={size} />;
+          },
+        }}
       />
     </Tab.Navigator>
   );
@@ -36,7 +60,7 @@ const TabNavigate = () => {
 
 const Routes = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Home"
         component={TabNavigate}

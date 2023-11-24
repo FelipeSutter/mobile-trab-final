@@ -15,14 +15,19 @@ const Detalhes = ({ route }) => {
   const [loading, setLoading] = useState(false);
   const { id } = route.params;
 
-  const getMusica = async () => {
+  const getMusica = async (retryCount = 3) => {
     setLoading(true);
     setTimeout(async () => {
       try {
         const { data } = await api.get(`/${id}`);
         setMusica(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        if (error.response && error.response.status === 429 && retryCount > 0) {
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          await getMusica(retryCount - 1);
+        } else {
+          console.error("Error fetching data:", error);
+        }
       } finally {
         setLoading(false);
       }
@@ -49,7 +54,6 @@ const Detalhes = ({ route }) => {
       <ScrollView>
         <View style={styles.containerInfo}>
           <Image source={{ uri: musica.url }} style={styles.img} />
-
           <Text style={[styles.textArtist, styles.text]}>{musica.artist}</Text>
           <Text style={[styles.textMusic, styles.text]}>{musica.title}</Text>
           <Text style={[styles.textDescription, styles.text]}>
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   img: {
     width: 200,
     height: 200,
-    borderWidth: 2,
+    borderWidth: 5,
     borderColor: "#b0d6ff",
     borderRadius: 100,
   },
@@ -96,6 +100,7 @@ const styles = StyleSheet.create({
   },
   textDescription: {
     fontSize: 20,
+    textAlign: "center",
   },
 });
 

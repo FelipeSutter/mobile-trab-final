@@ -27,7 +27,7 @@ export default function ModalEdicao({
     }
   }, [music]);
 
-  const handleSaveEdit = async () => {
+  const handleSaveEdit = async (retryCount = 3) => {
     onSaveEdit();
     try {
       await axios.put(
@@ -44,7 +44,12 @@ export default function ModalEdicao({
       setMusicas(music);
       setModalVisible(false);
     } catch (error) {
-      console.log("Erro ao atualizar os dados:", error);
+      if (error.response && error.response.status === 429 && retryCount > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await handleSaveEdit(retryCount - 1);
+      } else {
+        console.log("Erro ao atualizar os dados:", error);
+      }
     }
   };
 

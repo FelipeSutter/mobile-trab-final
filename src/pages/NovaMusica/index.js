@@ -7,7 +7,7 @@ import MusicaForm from "../../components/MusicaForm";
 function NovaMusica({ navigation }) {
   const [musicas, setMusicas] = useState([]);
 
-  const createPost = async (musica) => {
+  const createPost = async (musica, retryCount = 3) => {
     try {
       const response = await axios.post(
         "https://6542c2c401b5e279de1f8b8f.mockapi.io/musicas/",
@@ -23,11 +23,15 @@ function NovaMusica({ navigation }) {
         setMusic: response.data,
       });
     } catch (error) {
-      console.error("Erro ao postar a música:", error);
-      Alert.alert(
-        "Erro",
-        "Erro ao postar a música. Por favor, tente novamente."
-      );
+      if (error.response && error.response.status === 429 && retryCount > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await createPost(retryCount - 1);
+      } else {
+        Alert.alert(
+          "Erro",
+          "Erro ao postar a música. Por favor, tente novamente."
+        );
+      }
     }
   };
 

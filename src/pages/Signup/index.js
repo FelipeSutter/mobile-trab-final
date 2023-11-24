@@ -7,12 +7,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BlurView } from "expo-blur";
 import { Video } from "expo-av";
 import BackgroundVideo from "../../../assets/womanMusic2.mp4";
+import {
+  useFonts,
+  Raleway_400Regular,
+  Raleway_700Bold,
+} from "@expo-google-fonts/raleway";
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [emailConf, setEmailConf] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
+
+  const [fontsLoaded] = useFonts({
+    Raleway_400Regular,
+    Raleway_700Bold,
+  });
   const [status, setStatus] = useState({});
 
   const handleSignup = async () => {
@@ -20,7 +30,7 @@ const Signup = ({ navigation }) => {
       setError("Preencha todos os campos");
       return;
     } else if (email !== emailConf) {
-      setError("Os e-mails não são iguais");
+      setError("Os nomes não são iguais");
       return;
     }
 
@@ -104,13 +114,14 @@ const styles = StyleSheet.create({
   },
   labelSignin: {
     fontSize: 16,
-    color: "#676767",
+    color: "#c9c8c4",
     marginTop: 10,
     textAlign: "center",
   },
   strong: {
-    color: "#007bff", // Cor do link
+    color: "#383540", // Cor do link
     textDecorationLine: "underline",
+    marginLeft: 5,
   },
   video: {
     flex: 1,
@@ -125,6 +136,7 @@ const styles = StyleSheet.create({
 
   titleSingup: {
     fontSize: 40,
-    color: "#fff",
+    color: "#e2e2e2",
+    fontFamily: "Raleway_700Bold",
   },
 });
