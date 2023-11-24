@@ -102,8 +102,8 @@ const Home = ({ route }) => {
 
   useEffect(() => {
     getMusicas();
-    getLogin();
-  }, []);
+    // getLogin();
+  }, [musicas]);
 
   if (!fontsLoaded) {
     // Aguarde até que as fontes sejam carregadas

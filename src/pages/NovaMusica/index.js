@@ -20,7 +20,7 @@ function NovaMusica({ navigation }) {
 
       navigation.navigate("Home", {
         message: "Música postada com sucesso!",
-        NovaMusica: response.data,
+        setMusic: response.data,
       });
     } catch (error) {
       console.error("Erro ao postar a música:", error);
@@ -30,6 +30,8 @@ function NovaMusica({ navigation }) {
       );
     }
   };
+
+  // TODO: Atualizar a home quando postar uma música.
 
   return (
     <>
