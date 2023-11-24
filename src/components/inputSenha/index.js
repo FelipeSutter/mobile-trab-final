@@ -21,7 +21,6 @@ export default function InputSenha({ setSenha }) {
         <TextInput
           style={styles.input}
           placeholder="Digite sua Senha"
-          // placeholderTextColor="" // TODO
           value={input}
           onChangeText={(texto) => setInput(texto)}
           secureTextEntry={hidePass}
